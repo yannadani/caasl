@@ -1,14 +1,13 @@
-# Causal Amortized Structure Learning (CAASL)
+# Amortized Active Causal Induction with Deep Reinforcement Learning
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![PyPI version](https://badge.fury.io/py/caasl.svg)](https://badge.fury.io/py/caasl)
 
-This repository contains the implementation code for the paper **"[Amortized Active Causal Induction with Deep Reinforcement Learning](https://arxiv.org/abs/2405.16718)"**.
+This repository contains the implementation code for the paper **"[Amortized Active Causal Induction with Deep Reinforcement Learning](https://arxiv.org/abs/2405.16718)", NeurIPS 2024**.
 
 ## Overview
 
-CAASL is a deep reinforcement learning framework for adaptive causal structure learning. The method uses Soft Actor-Critic (SAC) to learn an agent that can design optimal interventions for discovering causal relationships in structural causal models.
+Causal Active Amortized Structure Learning (CAASL) is a deep reinforcement learning framework for causal structure learning with adaptive sequential intervention design. The method uses Soft Actor-Critic (SAC) to learn a policy that can design optimal interventions to perform and collect additional interventional data for discovering causal relationships in structural causal models. The data for training this policy comes from a simulator of the envionment we wish to do causal structure learning in. The reward is defined as the number of correct entries in the predicted adjacency matrix by an amortized causal structure learning framework (for ex. [AVICI](https://github.com/larslorch/avici)) due to the intervention predicted by the policy. Once the policy is trained, informative interventions for any dataset can be obtained by just a forward pass of the dataset (and the data collected so far) through the trained policy.
 
 ### Key Features
 
@@ -17,6 +16,7 @@ CAASL is a deep reinforcement learning framework for adaptive causal structure l
 - **Scalable Architecture**: Transformer-based policies for handling variable-sized graphs
 - **Multi-GPU Support**: Parallel training across multiple GPUs
 - **Comprehensive Evaluation**: Out-of-distribution testing and ablation studies
+- **Noisy Intervention Support**: OOD evaluation with intervention noise for robustness testing
 
 ## Installation
 
@@ -60,34 +60,6 @@ caasl train --config caasl/configs/sergio_train.yaml
 caasl train --config caasl/configs/linear_gaussian_train.yaml
 ```
 
-## Project Structure
-
-```
-caasl/
-├── synthetic.py            # Linear Gaussian experiments
-├── sergio.py               # SERGIO experiments
-├── cli.py                  # Command-line interface
-├── configs/                # YAML configuration files
-├── algos/                  # RL algorithms (SAC)
-├── envs/                   # Environment implementations
-├── models/                 # Causal model definitions
-├── policies/               # Neural network policies
-├── q_functions/            # Q-function implementations
-├── replay_buffer/          # Replay buffer implementations
-├── sampler/                # Sampling utilities
-├── spaces/                 # Space definitions
-├── modules/                # Neural network modules
-├── experiment/             # Experiment utilities
-├── dowel/                  # Logging utilities
-├── params/                 # Parameter management
-├── ops/                    # Operations
-├── optim/                  # Optimization utilities
-├── ...                     # Other core modules
-├── requirements.txt        # Python dependencies
-├── setup.py                # Package installation
-└── README.md               # This file
-```
-
 ## Configuration
 
 ### Key Parameters
@@ -105,6 +77,22 @@ caasl/
 - `CUDA_VISIBLE_DEVICES`: Specify which GPUs to use
 - `WANDB_PROJECT`: Weights & Biases project name
 - `WANDB_ENTITY`: Weights & Biases username/team
+
+## Out-of-Distribution (OOD) Evaluation
+
+CAASL includes a comprehensive OOD evaluation framework that allows testing model robustness under various distribution shifts:
+
+### SERGIO OOD Settings
+- **Graph Structure Changes**: Different graph priors (Erdős-Rényi, Scale-free)
+- **Dimensionality Changes**: Variable count variations
+- **Intervention Type Changes**: Different intervention strategies
+- **Noise Config Changes**: Various noise configurations
+- **Noisy Intervention**: Intervention noise for robustness testing
+
+### Linear Gaussian OOD Settings
+- **Graph Structure Changes**: Different graph topologies
+- **Dimensionality Changes**: Variable count variations
+- **Intervention Type Changes**: Different intervention strategies
 
 ## Citation
 
