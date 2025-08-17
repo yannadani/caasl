@@ -1,0 +1,54 @@
+# Linear Gaussian OOD Evaluation Configurations
+# This file defines OOD evaluation environments by only specifying what's different from training
+
+# Based on linear_gaussian_train.yaml
+linear_gaussian:
+  # Graph structure changes
+  graph:
+    description: "Change graph prior to scale-free"
+    changes:
+      graph_prior: "scale_free"
+  
+  graph+theta:
+    description: "Change graph prior and add coefficient mean"
+    changes:
+      graph_prior: "scale_free"
+      coeff_mean: 0.1
+  
+  graph+theta+noise:
+    description: "Change graph prior, add coefficient mean, and change noise type"
+    changes:
+      graph_prior: "scale_free"
+      coeff_mean: 0.1
+      noise_type: "gumbel"
+  
+  graph+noise:
+    description: "Change graph prior and noise type"
+    changes:
+      graph_prior: "scale_free"
+      noise_type: "gumbel"
+  
+  # Dimensionality changes
+  d+2:
+    description: "Increase d by 2"
+    changes:
+      d_offset: 2
+  
+  d+5:
+    description: "Increase d by 5"
+    changes:
+      d_offset: 5
+  
+  d+10:
+    description: "Increase d by 10"
+    changes:
+      d_offset: 10
+  
+  # Intervention type changes
+  intervType:
+    description: "Change intervention type to shift"
+    changes:
+      intervention_type: "shift"
+
+
+

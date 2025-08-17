@@ -1,0 +1,57 @@
+# Training parameters
+G: 1
+budget: 10
+buffer_capacity: 10000000
+d: 10
+discount: 0.9
+ens_size: 2
+graph_degree: 3.0
+n_parallel: 1000
+n_rl_itr: 10001
+num_attn_layers: 4
+num_attn_layers_q_func: 4
+pi_lr: 0.001
+qf_lr: 3.0e-05
+tau: 0.001
+num_initial_obs: 50
+
+# Default function parameters
+defaults:
+  seed: 0
+  eval_save_dir: null
+  log_dir: null
+  snapshot_mode: "gap"
+  snapshot_gap: 500
+  alpha: null
+  k: 2
+  batch_size: 1
+  use_wandb: false
+  norm_rewards: false
+  intervention_type: "do"
+  shared_encoder: false
+  data_seed: 1
+
+# Model parameters for training environment
+model:
+  type: "LinGaussANMModel"
+  n_parallel: 1000 
+  d: 10
+  intervention_type: "do"
+  graph_prior: "erdos_renyi"
+  graph_args:
+    degree: 3.0
+  noise_type: "gauss"
+  coeff_mean: 0.0
+
+# Evaluation model parameters
+eval_model:
+  type: "LinGaussANMModel"
+  n_parallel: 100  
+  d: 10
+  intervention_type: "do"
+  graph_prior: "erdos_renyi"
+  graph_args:
+    degree: 3.0
+  noise_type: "gauss"
+  coeff_mean: 0.0
+

@@ -1,0 +1,46 @@
+# SERGIO OOD Evaluation Configurations
+# This file defines OOD evaluation environments by only specifying what's different from training
+
+# Based on sergio_train.yaml
+sergio:
+  # Graph structure changes
+  graph:
+    description: "Change graph prior to scale-free"
+    changes:
+      graph_prior: "scale_free"
+  
+  # Dimensionality changes
+  d+2:
+    description: "Increase d by 2"
+    changes:
+      d_offset: 2
+  
+  d+5:
+    description: "Increase d by 5"
+    changes:
+      d_offset: 5
+  
+  d+10:
+    description: "Increase d by 10"
+    changes:
+      d_offset: 10
+  
+  # Intervention type changes
+  intervType:
+    description: "Change intervention type to kdown"
+    changes:
+      intervention_type: "kdown"
+  
+  # Noise config changes
+  noise_config:
+    description: "Change to drop-seq noise config"
+    changes:
+      noise_config_type: "drop-seq"
+
+  noisy_intervention:
+    description: "Add low-level noisy intervention (intervention_noise=0.1)"
+    changes:
+      intervention_noise: 0.1
+
+
+

@@ -1,0 +1,54 @@
+# Training parameters
+G: 1
+budget: 10
+buffer_capacity: 1000000
+d: 10
+discount: 0.95
+ens_size: 2
+graph_degree: 3.0
+n_parallel: 1000
+n_rl_itr: 10001
+num_attn_layers: 3
+num_attn_layers_q_func: 3
+pi_lr: 0.01
+qf_lr: 3.0e-06
+tau: 0.001
+num_initial_obs: 50
+
+# Default function parameters
+defaults:
+  seed: 0
+  eval_save_dir: null
+  log_dir: null
+  snapshot_mode: "gap"
+  snapshot_gap: 500
+  alpha: null
+  batch_size: 1
+  wandb: false
+  norm_rewards: false
+  intervention_type: "kout"
+  shared_encoder: false
+  data_seed: 1
+
+# Model parameters for training environment
+model:
+  type: "GRNSergioModel"
+  n_parallel: 1000  # From training
+  d: 10
+  intervention_type: "kout"
+  graph_prior: "erdos_renyi"
+  graph_args:
+    degree: 3.0
+  noise_config_type: "10x-chromium-mini"
+
+# Evaluation model parameters
+eval_model:
+  type: "GRNSergioModel"
+  n_parallel: 100  # For evaluation
+  d: 10
+  intervention_type: "kout"
+  graph_prior: "erdos_renyi"
+  graph_args:
+    degree: 3.0
+  noise_config_type: "10x-chromium-mini"
+
