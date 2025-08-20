@@ -5,14 +5,14 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "caasl"
 dynamic = ["version"]
-description = "Causal Amortized Structure Learning with Deep Reinforcement Learning"
+description = "Causal Amortized Active Structure Learning (CAASL) with Deep Reinforcement Learning"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "Yashas Annadani", email = "yashas.annadani@example.com"}
+    {name = "Yashas Annadani", email = "yashas.annadani@tum.de"}
 ]
 maintainers = [
-    {name = "Yashas Annadani", email = "yashas.annadani@example.com"}
+    {name = "Yashas Annadani", email = "yashas.annadani@tum.de"}
 ]
 keywords = ["causal-inference", "reinforcement-learning", "deep-learning", "machine-learning"]
 classifiers = [
@@ -57,10 +57,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-username/caasl"
-Documentation = "https://github.com/your-username/caasl#readme"
-Repository = "https://github.com/your-username/caasl.git"
-"Bug Tracker" = "https://github.com/your-username/caasl/issues"
+Homepage = "https://github.com/yannadani/caasl"
+Documentation = "https://github.com/yannadani/caasl#readme"
+Repository = "https://github.com/yannadani/caasl.git"
+"Bug Tracker" = "https://github.com/yannadani/caasl/issues"
 
 [project.scripts]
 caasl = "caasl.cli:main"
